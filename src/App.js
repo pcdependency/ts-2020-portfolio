@@ -21,10 +21,15 @@ import img18 from "./img/18.jpg";
 import img19 from "./img/19.jpg";
 import img20 from "./img/20.jpg";
 import img21 from "./img/21.jpg";
+import img22 from "./img/22.jpg";
+import img23 from "./img/23.jpg";
+import img24 from "./img/24.jpg";
+import img25 from "./img/25.jpg";
+import img26 from "./img/26.gif";
 import BackIcon from "./img/back.svg";
 
 const tabs = [
-  { name: "Websites", imgs: [] },
+  { name: "Websites", imgs: [{ img: img26, sfw: true }] },
   {
     name: "Banners",
     imgs: [
@@ -34,23 +39,27 @@ const tabs = [
       { img: img6, sfw: false },
       { img: img7, sfw: true },
       { img: img8, sfw: true },
-      { img: img9, sfw: true },
       { img: img10, sfw: true },
       { img: img12, sfw: true },
       { img: img13, sfw: true },
       { img: img14, sfw: true },
+      { img: img21, sfw: true },
       { img: img16, sfw: true },
       { img: img17, sfw: true },
       { img: img19, sfw: true },
+      { img: img9, sfw: true },
       { img: img20, sfw: false },
-      { img: img21, sfw: true },
+      { img: img22, sfw: true },
     ],
   },
   {
     name: "Profile Pictures",
     imgs: [
+      { img: img23, sfw: true },
       { img: img18, sfw: true },
       { img: img11, sfw: true },
+      { img: img24, sfw: true },
+      { img: img25, sfw: true },
     ],
   },
   {
@@ -185,13 +194,23 @@ function App() {
                     [i]: false,
                   });
                 }}
-                style={{ backgroundColor: `rgb(${val}, ${val}, ${val})` }}
+                style={{
+                  backgroundColor:
+                    page === i ? "white" : `rgb(${val}, ${val}, ${val})`,
+                }}
               >
-                <p>{t.name}</p>
+                <p style={{ color: page === i ? "black" : "white" }}>
+                  {t.name}
+                </p>
               </div>
             );
           })}
-        <a href="https://ts-2022-resume.netlify.com" className="tab contact">
+        <a
+          href="https://ts-2022-resume.netlify.com/r"
+          target="_blank"
+          rel="noreferrer"
+          className="tab contact"
+        >
           <p>Contact</p>
         </a>
       </div>
