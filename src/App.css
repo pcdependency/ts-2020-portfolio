@@ -1,0 +1,250 @@
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  font-size: 100%;
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden !important;
+  background-color: black;
+}
+
+div {
+  user-select: none;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.appContainer {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+p {
+  user-select: none;
+  touch-action: none;
+  pointer-events: none;
+}
+
+/* ------------------------------------------- */
+
+.container:nth-of-type(1) {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoContainer {
+  height: 25%;
+  min-height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(70, 70, 70);
+}
+
+.logo {
+  height: 60%;
+  width: 60%;
+  background-image: url(./img/favicon.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tab {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tab.homeBtn {
+  max-height: 100px;
+  background-color: rgb(125, 17, 17);
+}
+
+.tab.left:hover {
+  transition: ease-in-out 0.25s;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+}
+
+.tab.left:hover > p {
+  transition: ease-in-out 0.25s;
+  font-size: 1.5vh;
+}
+
+.tab.homeBtn > img {
+  height: 2vh;
+  width: 2vh;
+  margin-right: 1vh !important;
+  filter: invert(1);
+}
+
+.tab.homeBtn:hover > img {
+  transition: ease-in-out 0.2s;
+  filter: invert(0);
+  transform: translateX(-10px);
+}
+
+.tab.homeBtn:hover,
+.tab.contact:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.tab.homeBtn:hover > p,
+.tab.contact:hover > p {
+  color: black;
+}
+
+.tab > p {
+  font-size: 1.25vh;
+  color: rgb(240, 240, 240);
+  font-weight: bold;
+}
+
+.tab.contact {
+  max-height: 100px;
+}
+
+.tab.contact > p {
+  color: white;
+}
+
+.tab.sfwContainer {
+  display: flex;
+  max-height: 50px;
+  justify-content: space-between;
+}
+
+.tab.sfwContainer > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab.sfwContainer > div > p {
+  color: white;
+}
+
+/* ------------------------------------------- */
+
+.container:nth-of-type(2) {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab.main {
+  position: relative;
+}
+
+.tab.main > img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  object-fit: cover;
+  transform: scale(1.3);
+  z-index: 0;
+  transition: ease-in-out 0.25s;
+}
+
+.tab.main:hover > img {
+  transform: scale(1);
+}
+
+.tab.main > p {
+  z-index: 2;
+  font-size: 2.5vh;
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5));
+  transition: ease-in-out 0.25s;
+}
+
+.tab.main:hover > p {
+  font-size: 0;
+}
+
+/* ------------------------------------------- */
+
+.container.page {
+  overflow-y: scroll !important;
+}
+
+.container.page > img {
+  width: 100%;
+  object-fit: contain;
+  cursor: zoom-in;
+}
+
+/* ------------------------------------------- */
+
+.imgOverlayContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.imgOverlayContainer > img {
+  width: 100%;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 800px) {
+  .appContainer {
+    flex-direction: column;
+  }
+
+  .container:nth-of-type(1) {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container:nth-of-type(2) {
+    height: 70%;
+    width: 100%;
+  }
+
+  .logoContainer {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .tab.sfwContainer {
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .tab.contact {
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .tab.homeBtn {
+    max-height: 100%;
+  }
+}
