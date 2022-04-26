@@ -14,11 +14,11 @@
   background-color: black;
 }
 
-div {
+/* div {
   user-select: none;
   overflow-x: hidden !important;
   overflow-y: hidden !important;
-}
+} */
 
 .appContainer {
   position: fixed;
@@ -41,6 +41,7 @@ p {
   width: 25%;
   display: flex;
   flex-direction: column;
+  overflow: hidden !important;
 }
 
 .logoContainer {
@@ -70,6 +71,7 @@ p {
   align-items: center;
   text-align: center;
   cursor: pointer;
+  overflow: hidden !important;
 }
 
 .tab.homeBtn {
@@ -149,6 +151,7 @@ p {
   width: 75%;
   display: flex;
   flex-direction: column;
+  overflow: hidden !important;
 }
 
 .tab.main {
@@ -182,11 +185,18 @@ p {
 
 /* ------------------------------------------- */
 
-.container.page {
+#pageContainer {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
   overflow-y: scroll !important;
 }
 
-.container.page > img {
+#pageContainer
+  > .infinite-scroll-component__outerdiv
+  > .infinite-scroll-component
+  > img {
   width: 100%;
   object-fit: contain;
   cursor: zoom-in;
@@ -226,6 +236,10 @@ p {
 
   .container:nth-of-type(2) {
     height: 70%;
+    width: 100%;
+  }
+
+  #pageContainer {
     width: 100%;
   }
 
