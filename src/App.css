@@ -190,6 +190,7 @@ p {
   width: 75%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   overflow-y: scroll !important;
 }
 

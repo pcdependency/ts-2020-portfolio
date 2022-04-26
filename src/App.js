@@ -107,7 +107,7 @@ function useWindowDimensions() {
   return windowDimensions;
 }
 
-function App({ scrollPosition }) {
+function App() {
   const { width } = useWindowDimensions();
   const gt800 = width > 800;
   const [hover, setHover] = useState(initialState);
@@ -124,18 +124,16 @@ function App({ scrollPosition }) {
     transition: "ease-in-out 0.25s",
   };
 
-  function next(pageSwitch) {
-    !pageSwitch
-      ? setImages([
-          ...images,
-          ...tabs[page].imgs.slice(images.length, images.length + 6),
-        ])
-      : setImages([...tabs[page].imgs.slice(0, 6)]);
+  function next() {
+    console.log("test");
+    setImages([
+      ...images,
+      ...tabs[page].imgs.slice(images.length, images.length + 6),
+    ]);
   }
 
   useEffect(() => {
-    console.log(page);
-    page !== -1 && next(true);
+    if (page !== -1) setImages([...tabs[page].imgs.slice(0, 6)]);
   }, [page]);
 
   return (
@@ -301,9 +299,9 @@ function App({ scrollPosition }) {
         <div id="pageContainer">
           <InfiniteScroll
             dataLength={images.length}
-            next={() => next(false)}
+            next={next}
             hasMore={images.length < tabs[page].imgs.length}
-            loader={<h4>Loading...</h4>}
+            loader={<h4 style={{ color: "white" }}>Loading...</h4>}
             scrollableTarget="pageContainer"
           >
             {tabs[page].imgs.length > 0 &&
@@ -317,6 +315,8 @@ function App({ scrollPosition }) {
                       alt=""
                     />
                   );
+                } else {
+                  return null;
                 }
               })}
           </InfiniteScroll>
