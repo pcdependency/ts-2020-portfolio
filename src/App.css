@@ -168,6 +168,10 @@ p {
   transition: ease-in-out 0.25s;
 }
 
+.tab.main > video {
+  position: absolute;
+}
+
 .tab.main:hover > img {
   transform: scale(1);
 }
@@ -197,7 +201,8 @@ p {
 #pageContainer
   > .infinite-scroll-component__outerdiv
   > .infinite-scroll-component
-  > img {
+  > img,
+video {
   width: 100%;
   object-fit: contain;
   cursor: zoom-in;

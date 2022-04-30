@@ -25,53 +25,57 @@ import img22 from "./img/originals/22.jpg";
 import img23 from "./img/originals/23.jpg";
 import img24 from "./img/originals/24.jpg";
 import img25 from "./img/originals/25.jpg";
-import img26 from "./img/originals/26.gif";
+import vid1 from "./img/originals/26.m4v";
+import vid2 from "./img/originals/27.m4v";
 import BackIcon from "./img/back.svg";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const tabs = [
   {
-    name: "Websites",
-    imgs: [{ img: img26, sfw: true, width: 1920, height: 983 }],
-  },
-  {
     name: "Banners",
     imgs: [
-      { img: img15, sfw: true, width: 1000, height: 462 },
-      { img: img4, sfw: false, width: 3840, height: 1215 },
-      { img: img5, sfw: true, width: 2120, height: 347 },
-      { img: img6, sfw: false, width: 3840, height: 634 },
-      { img: img7, sfw: true, width: 3860, height: 639 },
-      { img: img8, sfw: true, width: 2120, height: 1023 },
-      { img: img10, sfw: true, width: 2120, height: 1023 },
-      { img: img12, sfw: true, width: 4960, height: 1040 },
-      { img: img13, sfw: true, width: 3000, height: 1040 },
-      { img: img14, sfw: true, width: 6000, height: 2000 },
-      { img: img21, sfw: true, width: 3840, height: 1326 },
-      { img: img16, sfw: true, width: 3000, height: 1000 },
-      { img: img17, sfw: true, width: 6000, height: 2000 },
-      { img: img19, sfw: true, width: 3840, height: 633 },
-      { img: img9, sfw: true, width: 3840, height: 633 },
-      { img: img20, sfw: false, width: 6000, height: 2000 },
-      { img: img22, sfw: true, width: 1920, height: 640 },
+      { img: img15, sfw: true, type: "img" },
+      { img: img4, sfw: false, type: "img" },
+      { img: img5, sfw: true, type: "img" },
+      { img: img6, sfw: false, type: "img" },
+      { img: img7, sfw: true, type: "img" },
+      { img: img8, sfw: true, type: "img" },
+      { img: img10, sfw: true, type: "img" },
+      { img: img12, sfw: true, type: "img" },
+      { img: img13, sfw: true, type: "img" },
+      { img: img14, sfw: true, type: "img" },
+      { img: img21, sfw: true, type: "img" },
+      { img: img16, sfw: true, type: "img" },
+      { img: img17, sfw: true, type: "img" },
+      { img: img19, sfw: true, type: "img" },
+      { img: img9, sfw: true, type: "img" },
+      { img: img20, sfw: false, type: "img" },
+      { img: img22, sfw: true, type: "img" },
     ],
   },
   {
     name: "Profile Pictures",
     imgs: [
-      { img: img23, sfw: true, width: 4000, height: 4000 },
-      { img: img18, sfw: true, width: 2086, height: 2000 },
-      { img: img11, sfw: true, width: 4000, height: 4000 },
-      { img: img24, sfw: true, width: 1920, height: 1792 },
-      { img: img25, sfw: true, width: 1920, height: 1920 },
+      { img: img23, sfw: true, type: "img" },
+      { img: img18, sfw: true, type: "img" },
+      { img: img11, sfw: true, type: "img" },
+      { img: img24, sfw: true, type: "img" },
+      { img: img25, sfw: true, type: "img" },
     ],
   },
   {
     name: "Architectural Designs",
     imgs: [
-      { img: img3, sfw: true, width: 1920, height: 1080 },
-      { img: img1, sfw: true, width: 1920, height: 1080 },
-      { img: img2, sfw: true, width: 1920, height: 1080 },
+      { img: img3, sfw: true, type: "img" },
+      { img: img1, sfw: true, type: "img" },
+      { img: img2, sfw: true, type: "img" },
+    ],
+  },
+  {
+    name: "Websites",
+    imgs: [
+      { img: vid1, sfw: true, type: "vid" },
+      { img: vid2, sfw: true, type: "vid" },
     ],
   },
 ];
@@ -125,7 +129,6 @@ function App() {
   };
 
   function next() {
-    console.log("test");
     setImages([
       ...images,
       ...tabs[page].imgs.slice(images.length, images.length + 6),
@@ -255,7 +258,11 @@ function App() {
                   });
                 }}
               >
-                {t.imgs.length > 0 && <img src={t.imgs[0].img} alt="" />}
+                {t.imgs[0].type === "img" ? (
+                  <img src={t.imgs[0].img} alt="" />
+                ) : (
+                  <video src={t.imgs[0].img} loop playsInline autoPlay />
+                )}
                 <div
                   className="filter grayscale"
                   style={{
@@ -307,12 +314,22 @@ function App() {
             {tabs[page].imgs.length > 0 &&
               images.map((i, idx) => {
                 if (!sfw || (i.sfw && sfw)) {
-                  return (
+                  return i.type === "img" ? (
                     <img
                       onClick={() => setImg(idx)}
                       key={idx}
                       src={i.img}
                       alt=""
+                    />
+                  ) : (
+                    <video
+                      onClick={() => setImg(idx)}
+                      src={i.img}
+                      loop
+                      playsInline
+                      autoPlay
+                      key={idx}
+                      muted
                     />
                   );
                 } else {
@@ -324,11 +341,15 @@ function App() {
       )}
       {page !== -1 && img !== -1 && (
         <div className="imgOverlayContainer" onClick={() => setImg(-1)}>
-          <img
-            src={tabs[page].imgs[img].img}
-            style={{ cursor: "zoom-out" }}
-            alt=""
-          />
+          {tabs[page].imgs[img].type === "img" ? (
+            <img
+              src={tabs[page].imgs[img].img}
+              style={{ cursor: "zoom-out" }}
+              alt=""
+            />
+          ) : (
+            <video src={tabs[page].imgs[img].img} loop playsInline autoPlay />
+          )}
         </div>
       )}
     </div>
